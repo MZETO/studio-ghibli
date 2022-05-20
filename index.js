@@ -3,6 +3,8 @@ const buscador$$ = document.querySelector(".input");
 
 //necesito una función asincrona para hacer la llamada a la api (fetch)
 const llamadaApi = async () => {
+
+  //Hacemos la llamada a la api y lo convertimos a un json, almacenado en datosApiJSON
   const datosApi = await fetch("https://ghibliapi.herokuapp.com/films");
   const datosApiJSON = await datosApi.json();
 
@@ -14,10 +16,14 @@ const llamadaApi = async () => {
   //Para fixear que no ejecute la función sin hacer el input, usamos esta sintáxis
   buscador$$.addEventListener("input", () => buscar(datosApiJSON));
   //al añadir () => hacemos que solo se ejecute al hacer input
+
   pintar(datosApiJSON);
 };
 
 const detalle = (pelicula, cartel$$) => {
+
+  //condition --> si la clase de cartel$$ es === a cartel, cambiamos la clase a cartelPintado (aplica estilos) y pinta lo metido en el innerHTML
+
   if (cartel$$.className === "cartel") {
 
     cartel$$.className = "cartelPinchado";
@@ -32,7 +38,10 @@ const detalle = (pelicula, cartel$$) => {
     </div>
 
     `;
+
   } else {
+
+    //si no se pincha, se pinta el cartel tal cual está en la función pintar()
 
     cartel$$.className = "cartel";
 
@@ -50,25 +59,33 @@ const detalle = (pelicula, cartel$$) => {
 };
 
 const buscar = (peliculas) => {
+
   const peliculasFiltradas = [];
 
   //Iteramos sobre peliculas para que cuando haga la búsqueda, inserte las películas en el array correspondientes a la película
+
   for (const pelicula of peliculas) {
+
     //Si la búsqueda incluye el valor de pelicula.title, lo pushea en el array vacio
     if (
       pelicula.title
         .toLowerCase()
         .includes(buscador$$.value.toLowerCase().trim())
     ) {
+
       peliculasFiltradas.push(pelicula);
+
     }
   }
 
   pintar(peliculasFiltradas);
+
 };
 
 const pintar = (peliculas) => {
+
   //Con este innerHTML, borramos todo el HTML en la ejecución
+
   cartelera$$.innerHTML = ``;
 
   for (const pelicula of peliculas) {
@@ -116,9 +133,10 @@ const pintar = (peliculas) => {
     // cartel$$.appendChild(imagen$$);
     // cartel$$.appendChild(info$$);
 
+    //pintamos...
     cartelera$$.appendChild(cartel$$);
   }
 };
 
-//voy a tener una variable que se va a llamar "películas"
+//llamamos a la función que carga la api
 llamadaApi();
