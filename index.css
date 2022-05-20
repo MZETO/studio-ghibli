@@ -1,0 +1,52 @@
+.cartelera {
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: lightsalmon;
+
+}
+
+.cartel {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 500px;
+    width: 250px;
+    background-color: lightpink;
+    margin: 20px;
+
+}
+
+.titulo {
+    
+    color: lightyellow;
+    font-family: Arial, Helvetica, sans-serif;
+    height: 100px;
+    text-align: center;
+
+}
+
+.imagen {
+
+    width: 80%;
+
+}
+
+.info {
+
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 100px;
+
+}
+
+p{
+    margin: 20px;
+    color: aliceblue;
+    text-align: center;
+}
